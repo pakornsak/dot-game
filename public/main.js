@@ -6,10 +6,10 @@ const dpr = window.devicePixelRatio || 1;
 
 /** @type {HTMLCanvasElement} */
 // @ts-ignore
-const canvas = document.getElementById("board");
-canvas.width = document.body.clientWidth * dpr;
-canvas.height = (document.body.clientHeight - offsetTop) * dpr;
-const _ctx = canvas.getContext("2d");
+const _canvas = document.getElementById("board");
+_canvas.width = document.body.clientWidth * dpr;
+_canvas.height = (document.body.clientHeight - offsetTop) * dpr;
+const _ctx = _canvas.getContext("2d");
 _ctx.scale(dpr, dpr);
 
 class Game {
@@ -32,8 +32,11 @@ class Game {
     }, BALL_INTERVAL);
   };
 
-  animate = () => {
-    this.board.draw();
+  /**
+   * @param {number} time
+   */
+  animate = (time = 0) => {
+    this.board.draw(time);
     this.requestId = requestAnimationFrame(this.animate);
   };
 
@@ -54,7 +57,7 @@ const game = new Game(_ctx);
 game.play();
 
 silder.oninput = (e) => game.updateSpeed(e.target.value);
-canvas.onclick = (e) => {
+_canvas.onclick = (e) => {
   const x = e.x;
   const y = e.y - offsetTop;
   game.board.handleClick(x, y);

@@ -25,8 +25,16 @@ class Board {
     this.ctx.closePath();
   };
 
-  draw = () => {
+  /**
+   * @param {number} time
+   */
+  draw = (time) => {
+    const dpr = window.devicePixelRatio || 1;
+    const canvas = this.ctx.canvas;
     this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // clear outside balls
+    this.balls = this.balls.filter((x) => x.y - x.radius <= canvas.height / dpr);
 
     for (let i = 0; i < this.balls.length; i++) {
       this.balls[i].y += 2;
