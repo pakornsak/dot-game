@@ -26,7 +26,10 @@ class Board {
   };
 
   draw = () => {
+    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     for (let i = 0; i < this.balls.length; i++) {
+      this.balls[i].y += 2;
       this.drawBall(this.balls[i]);
     }
   };
