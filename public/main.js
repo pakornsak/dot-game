@@ -1,13 +1,15 @@
 //@ts-check
 const silder = document.getElementById("slider");
 const controls = document.getElementById("controls");
+const dpr = window.devicePixelRatio || 1;
 
 /** @type {HTMLCanvasElement} */
 // @ts-ignore
 const canvas = document.getElementById("board");
-canvas.width = document.body.clientWidth;
-canvas.height = document.body.clientHeight - controls.offsetHeight;
+canvas.width = document.body.clientWidth * dpr;
+canvas.height = (document.body.clientHeight - controls.offsetHeight) * dpr;
 const ctx = canvas.getContext("2d");
+ctx.scale(dpr, dpr);
 
 class Game {
   constructor(ctx) {
@@ -21,7 +23,7 @@ class Game {
 
   animate = () => {
     this.board.draw();
-    this.requestId = requestAnimationFrame(this.animate);
+    // this.requestId = requestAnimationFrame(this.animate);
   };
 
   play = () => {
