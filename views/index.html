@@ -5,7 +5,30 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-    <div>1</div>
-    <script src="/index.js"></script>
+  <main>
+    <section class="controls">
+			
+			<!-- points section and start button-->
+      <div class="row points-row">
+        <p class="points">0</p>
+        <div class="btns">
+          <button id="start" class="btn active">Start</button>
+        </div>
+      </div>
+      
+			<!-- slider and speed -->
+      <div class="row speed-row">
+          <input id="slider" type="range" min="10" max="100" value="10">
+          <p>Speed: <span id="speed">10</span></p>
+      </div>
+			
+    </section>
+    
+		<!-- space for game to take place -->
+    <section class="game"></section>
+		
+  </main>
+  <script src="/jquery.min.js"></script>
+  <script src="/index.js"></script>
 </body>
 </html>

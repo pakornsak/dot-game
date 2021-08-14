@@ -1,0 +1,194 @@
+// ------------- fonts and colors ------------- //
+
+$yellow: #ffeaa7;
+$green: #00b894;
+$greenLight: #c3fff3;
+$white: #fff;
+$red: #e17055;
+$orange: #fd9644;
+$orangeDark: #fd811c;
+
+$font: "Montserrat", sans-serif;
+
+// ------------- general styles ------------- //
+
+body {
+  background: $white;
+  font-family: $font;
+  position: relative;
+  margin: 70px 0;
+  letter-spacing: 0.5px;
+}
+
+main {
+  background-color: $green;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 0px 8px 33px #b7b7b7;
+  max-width: 320px;
+  height: 540px;
+  border-radius: 8px;
+}
+
+// ------------- controls section ------------- //
+.controls {
+  background-color: $yellow;
+  position: relative;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 5px 35px;
+  z-index: 15;
+}
+
+.row {
+  margin: 18px 0;
+
+  &.points-row {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+p {
+  color: $green;
+  margin: 0;
+
+  &.points {
+    font-size: 40px;
+  }
+}
+
+.speed-row {
+  input[type="range"] {
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: $green;
+    font-size: 18px;
+  }
+}
+
+// remove outline around slider
+*:focus {
+  outline: none;
+}
+
+input[type="range"] {
+  background: $green;
+  -webkit-appearance: none;
+  border-radius: 5px;
+  height: 4px;
+  width: 100%;
+
+  &::-webkit-slider-thumb {
+    background: $orange;
+    -webkit-appearance: none;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.btn {
+  background: $orange;
+  color: $white;
+  font-family: $font;
+  border: none;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  padding: 10px 0;
+  min-width: 135px;
+
+  &:hover {
+    background: $orangeDark;
+    color: $white;
+    transition: ease 0.5s;
+  }
+}
+
+.btns {
+  position: relative;
+  width: 90px;
+
+  // once start button is pressed, hide it under pause button
+  .btn {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    top: 0;
+    right: 0;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+}
+
+// ------------- game section ------------- //
+.game {
+  overflow: hidden;
+  position: relative;
+  top: -125px;
+  height: 495px;
+
+  // to pause the game - create a screen between mouse and circles to avoid continuation
+  &:after {
+    content: "";
+    position: absolute;
+    transform: translateY(-100%);
+    width: 100%;
+    height: 495px;
+    border-radius: 8px;
+    z-index: 10;
+  }
+
+  &.inactive {
+    &:after {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+// ------------- animation for dots ------------- //
+.dot {
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  z-index: 10;
+  background-color: $greenLight;
+  border-radius: 50%;
+  animation: falling;
+  animation-play-state: paused;
+  opacity: 1;
+
+  // once circles are clicked, they disappear
+  &.clicked {
+    opacity: 0;
+  }
+
+  // keep circles falling
+  &.fall {
+    animation-play-state: running;
+  }
+}
+
+// tells circles where to fall from during animation period
+@keyframes falling {
+  // start circles from top
+  0% {
+    top: 0;
+  }
+
+  99.99% {
+    top: 1000px;
+  }
+
+  // offscreen, don't show circles
+  100% {
+    display: none;
+  }
+}
