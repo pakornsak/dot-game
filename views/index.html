@@ -12,13 +12,14 @@
   
   <main>
     <section class="controls">
-      <p><span id="score">0</span></p>
-      <input id="slider" type="range" min="10" max="100" value="10">
+      <p><span id="score" class="score">0</span></p>
+      <input id="slider" class="silder" type="range" min="10" max="100" value="10">
       <p>Speed: <span id="speed">10</span></p>
     </section>
-    <canvas id="board" class="game-board"></canvas>
+    <canvas id="board" class="board"></canvas>
   </main>
   
+  <script type="text/javascript" src="/board.js"></script>
   <script type="text/javascript" src="/main.js"></script>
 </body>
 </html>
