@@ -7,25 +7,35 @@ class Board {
     this.ctx = ctx;
     /** @type {Ball[]}*/
     this.balls = [];
-    this.balls.push(new Ball());
-    this.balls.push(new Ball());
   }
+
+  addBall = () => {
+    this.balls.push(new Ball());
+  };
 
   /**
    * Draw a ball
    * @param {Ball} ball
    */
-  drawBall(ball) {
-    ctx.beginPath();
-    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-    ctx.fillStyle = "#c3fff3";
-    ctx.fill();
-    ctx.closePath();
-  }
+  drawBall = (ball) => {
+    this.ctx.beginPath();
+    this.ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    this.ctx.fillStyle = theme.colors.ball;
+    this.ctx.fill();
+    this.ctx.closePath();
+  };
 
-  draw() {
+  draw = () => {
     for (let i = 0; i < this.balls.length; i++) {
       this.drawBall(this.balls[i]);
     }
-  }
+  };
+
+  /**
+   * @param {number} x
+   * @param {number} y
+   */
+  handleClick = (x, y) => {
+    console.log(x, y);
+  };
 }
