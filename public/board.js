@@ -7,10 +7,13 @@ class Board {
     this.ctx = ctx;
     /** @type {Ball[]}*/
     this.balls = [];
+
+    const dpr = window.devicePixelRatio || 1;
+    this.canvasHeight = this.ctx.canvas.height / dpr;
   }
 
   addBall = () => {
-    this.balls.push(new Ball());
+    this.balls.push(new Ball(this.canvasHeight));
   };
 
   /**
@@ -27,26 +30,32 @@ class Board {
 
   /**
    * @param {number} time
+   * @param {number} speed
    */
-  draw = (time) => {
-    const dpr = window.devicePixelRatio || 1;
-    const canvas = this.ctx.canvas;
-    this.ctx.clearRect(0, 0, canvas.width, canvas.height);
+  draw = (time, speed) => {
+    // clear previous render
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    // remove outside balls
+    this.balls = this.balls.filter((x) => x.y - x.radius <= this.canvasHeight);
 
-    // clear outside balls
-    this.balls = this.balls.filter((x) => x.y - x.radius <= canvas.height / dpr);
+    const dt = time - this.lastRenderTime;
+    const px = (speed / 1000) * dt;
 
     for (let i = 0; i < this.balls.length; i++) {
-      this.balls[i].y += 2;
+      this.balls[i].y += px;
       this.drawBall(this.balls[i]);
     }
+
+    this.lastRenderTime = time;
   };
 
   /**
    * @param {number} x
    * @param {number} y
+   * @return {Ball | null}
    */
-  handleClick = (x, y) => {
-    console.log(x, y);
+  checkCollision = (x, y) => {
+    //check
+    return null;
   };
 }

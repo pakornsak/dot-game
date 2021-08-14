@@ -9,12 +9,14 @@ const rand = (min, max) => {
 };
 
 class Ball {
-  constructor() {
+  /**
+   * @param {number} height
+   */
+  constructor(height) {
     const r = rand(1, 10) * 10;
 
-    this.x = rand(r, 576 - r);
-    this.y = -r; // make it smooth falling
+    this.x = rand(r, height - r);
+    this.y = -r; // make it start smoothly
     this.radius = r;
-    this.point = r / 10;
   }
 }

@@ -1,5 +1,5 @@
 //@ts-check
-const silder = document.getElementById("slider");
+const _silder = document.getElementById("slider");
 const controls = document.getElementById("controls");
 const offsetTop = controls.offsetHeight;
 const dpr = window.devicePixelRatio || 1;
@@ -36,7 +36,7 @@ class Game {
    * @param {number} time
    */
   animate = (time = 0) => {
-    this.board.draw(time);
+    this.board.draw(time, this.speed);
     this.requestId = requestAnimationFrame(this.animate);
   };
 
@@ -51,14 +51,21 @@ class Game {
     this.speed = Number(speed);
     document.getElementById("speed").textContent = speed;
   };
+
+  /**
+   * @param {MouseEvent} e
+   */
+  handleClick = (e) => {
+    const ball = this.board.checkCollision(e.x, e.y - offsetTop);
+    if (ball) {
+      // calculate score
+      // update score board
+    }
+  };
 }
 
 const game = new Game(_ctx);
 game.play();
 
-silder.oninput = (e) => game.updateSpeed(e.target.value);
-_canvas.onclick = (e) => {
-  const x = e.x;
-  const y = e.y - offsetTop;
-  game.board.handleClick(x, y);
-};
+_silder.oninput = (e) => game.updateSpeed(e.target.value);
+_canvas.onclick = (e) => game.handleClick(e);
