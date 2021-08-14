@@ -13,7 +13,7 @@ class Ball {
     const r = rand(1, 10) * 10;
 
     this.x = rand(r, 576 - r);
-    this.y = 0;
+    this.y = -r; // make it smooth falling
     this.radius = r;
     this.point = r / 10;
   }
