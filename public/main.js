@@ -1,10 +1,13 @@
 //@ts-check
+const silder = document.getElementById("slider");
+const controls = document.getElementById("controls");
 
 /** @type {HTMLCanvasElement} */
 // @ts-ignore
 const canvas = document.getElementById("board");
+canvas.width = document.body.clientWidth;
+canvas.height = document.body.clientHeight - controls.offsetHeight;
 const ctx = canvas.getContext("2d");
-const silder = document.getElementById("slider");
 
 class Game {
   constructor(ctx) {
