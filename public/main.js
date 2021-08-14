@@ -4,15 +4,25 @@
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 
-let accountValues = {
-  score: 0,
-};
+class Game {
+  constructor(ctx) {
+    this.ctx = ctx;
+    this.board = new Board(ctx);
+    this.requestId = -1;
 
-// function updateAccount(key, value) {
-//   let element = document.getElementById(key);
-//   if (element) {
-//     element.textContent = value;
-//   }
-// }
+    this.speed = 10;
+    this.score = 0;
+  }
 
-let board = new Board(ctx);
+  animate(now = 0) {
+    this.board.draw();
+    this.requestId = requestAnimationFrame(this.animate);
+  }
+
+  play() {
+    this.animate();
+  }
+}
+
+const game = new Game(ctx);
+game.play();

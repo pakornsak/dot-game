@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dot Game</title>
-    <link rel="stylesheet" type="text/css" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+  
+  <title>Dot Game</title>
+
+  <link rel="stylesheet" type="text/css" href="/reset.min.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-    
-    <div class="grid">
-        <div>
-            <p>Score: <span id="score">0</span></p>
-            <input id="slider" type="range" min="10" max="100" value="10">
-            <p>Speed: <span id="speed">10</span></p>
-        </div>
-        <canvas id="board" class="game-board"></canvas>
-    </div>
-    
-    <script type="text/javascript" src="/main.js"></script>
+  
+  <main>
+    <section class="controls">
+      <p><span id="score">0</span></p>
+      <input id="slider" type="range" min="10" max="100" value="10">
+      <p>Speed: <span id="speed">10</span></p>
+    </section>
+    <canvas id="board" class="game-board"></canvas>
+  </main>
+  
+  <script type="text/javascript" src="/main.js"></script>
 </body>
 </html>
