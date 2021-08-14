@@ -5,7 +5,16 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-    <div>1</div>
-    <script src="/index.js"></script>
+    
+    <div class="grid">
+        <div>
+            <p>Score: <span id="score">0</span></p>
+            <input id="slider" type="range" min="10" max="100" value="10">
+            <p>Speed: <span id="speed">10</span></p>
+        </div>
+        <canvas id="board" class="game-board"></canvas>
+    </div>
+    
+    <script type="text/javascript" src="/main.js"></script>
 </body>
 </html>
