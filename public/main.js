@@ -18,12 +18,19 @@ class Game {
     this.board = new Board(ctx);
     this.requestId = -1;
 
-    this.speed = 10;
+    this.speed = DEFAULT_SPEED;
     this.score = 0;
 
-    this.board.addBall();
-    this.board.addBall();
+    this.onInit();
   }
+
+  onInit = () => {
+    this.board.addBall();
+
+    this.timerId = setInterval(() => {
+      this.board.addBall();
+    }, BALL_INTERVAL);
+  };
 
   animate = () => {
     this.board.draw();
