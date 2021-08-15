@@ -107,7 +107,7 @@ class Game {
     if (dot) {
       this.board.removeDot(found);
 
-      const score = Math.floor(50 / dot.radius);
+      const score = Math.floor(11 - dot.radius / 5);
       this.controls.score += score;
     }
   };
