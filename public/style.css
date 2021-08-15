@@ -16,6 +16,7 @@ main {
   padding: 5px 35px;
   color: #00b894;
   border: black solid 2px;
+  user-select: none;
 }
 .controls .score {
   font-size: 40px;
