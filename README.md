@@ -17,7 +17,7 @@ The goal of this exercise is to create a game. In the game, dots move from the t
 
 - allow dots to be overlaped each other
 - when overlapping, a dot which is created first is in the front, and a dot which is created later is in the back
-- when user clicks on overlapping dots, the front dot is picked
+- when user clicks on overlapping dots, the front-most dot is picked
 - dot size as follows, `10`,`20`,`30`,`40`,`50`,`60`,`70`,`80`,`90`,`100` px, to be easy for calcualting score
 - if browser window is resized, the game will be automatically restarted
 
