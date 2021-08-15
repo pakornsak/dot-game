@@ -12,21 +12,32 @@ _canvas.height = (document.body.clientHeight - offsetTop) * dpr;
 const _ctx = _canvas.getContext("2d");
 _ctx.scale(dpr, dpr);
 
+let accountValues = {
+  speed: DEFAULT_SPEED,
+  score: 0,
+};
+
+const updateAccount = (target, key, value) => {
+  target[key] = value;
+  let element = document.getElementById(key);
+  if (element) {
+    element.textContent = value;
+  }
+  return true;
+};
+
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.board = new Board(ctx);
+
     this.requestId = -1;
-
-    this.speed = DEFAULT_SPEED;
-    this.score = 0;
-
-    this.onInit();
+    this.account = new Proxy(accountValues, { set: updateAccount });
+    this.init();
   }
 
-  onInit = () => {
+  init = () => {
     this.board.addBall();
-
     this.timerId = setInterval(() => {
       this.board.addBall();
     }, BALL_INTERVAL);
@@ -36,7 +47,7 @@ class Game {
    * @param {number} time
    */
   animate = (time = 0) => {
-    this.board.draw(time, this.speed);
+    this.board.draw(time, this.account.speed);
     this.requestId = requestAnimationFrame(this.animate);
   };
 
@@ -48,18 +59,26 @@ class Game {
    * @param {string} speed
    */
   updateSpeed = (speed) => {
-    this.speed = Number(speed);
-    document.getElementById("speed").textContent = speed;
+    this.account.speed = Number(speed);
+  };
+
+  /**
+   * @param {number} score
+   */
+  updateScore = (score) => {
+    this.account.score = score;
   };
 
   /**
    * @param {MouseEvent} e
    */
   handleClick = (e) => {
-    const ball = this.board.checkCollision(e.x, e.y - offsetTop);
+    const [found, ball] = this.board.checkCollision(e.x, e.y - offsetTop);
     if (ball) {
-      // calculate score
-      // update score board
+      this.board.removeBall(found);
+
+      const score = Math.floor(ball.radius / 10);
+      this.account.score += score;
     }
   };
 }

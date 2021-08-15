@@ -18,6 +18,13 @@ class Board {
   };
 
   /**
+   * @param {number} index
+   */
+  removeBall = (index) => {
+    this.balls.splice(index, 1);
+  };
+
+  /**
    * Draw a ball
    * @param {Ball} ball
    */
@@ -37,7 +44,7 @@ class Board {
     // clear previous render
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     // remove outside balls
-    this.balls = this.balls.filter((x) => x.y - x.radius <= this.canvasHeight);
+    this.balls = this.balls.filter((b) => b.y - b.radius <= this.canvasHeight);
 
     const dt = time - this.lastRenderTime;
     const px = (speed / 1000) * dt;
@@ -53,10 +60,13 @@ class Board {
   /**
    * @param {number} x
    * @param {number} y
-   * @return {Ball | null}
+   * @return {[number, Ball | null]}
    */
   checkCollision = (x, y) => {
-    //check
-    return null;
+    const found = this.balls.findIndex((b) => {
+      const distance = Math.sqrt(Math.pow(x - b.x, 2) + Math.pow(y - b.y, 2));
+      return distance < b.radius;
+    });
+    return [found, this.balls[found]];
   };
 }
