@@ -8,7 +8,7 @@ const SPEED_MAX = 100;
 /**
  * Dot settings
  */
-const DOT_DROP_RATE = 1000; // every 1000 ms
+const DOT_DROP_RATE = 1000; // every 1000ms
 const DOT_COLORS = [
   "#ffb5e8",
   "#d5aaff",
