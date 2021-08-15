@@ -40,10 +40,10 @@ class Game {
     this.controls.score = 0;
     this.controls.speed = SPEED_MIN;
 
-    this.board.addBall();
+    this.board.addDot();
     this.timerId = setInterval(() => {
-      this.board.addBall();
-    }, BALL_DROP_RATE);
+      this.board.addDot();
+    }, DOT_SPAWN_RATE);
   };
 
   /**
@@ -70,11 +70,11 @@ class Game {
    * @param {MouseEvent} e
    */
   handleClick = (e) => {
-    const [found, ball] = this.board.checkCollision(e.x, e.y - offsetTop);
-    if (ball) {
-      this.board.removeBall(found);
+    const [found, dot] = this.board.checkCollision(e.x, e.y - offsetTop);
+    if (dot) {
+      this.board.removeDot(found);
 
-      const score = Math.floor(ball.radius / 10);
+      const score = Math.floor(dot.radius / 10);
       this.controls.score += score;
     }
   };
