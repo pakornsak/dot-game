@@ -20,6 +20,8 @@ main {
 }
 .controls .score {
   font-size: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 input.silder {
