@@ -3,6 +3,9 @@
 *::after {
   box-sizing: border-box;
 }
+*:focus {
+  outline: none;
+}
 body,
 h1,
 h2,
