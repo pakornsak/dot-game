@@ -24,7 +24,7 @@ class Dot {
     const r = i * 5;
 
     this.x = rand(r, width - r); // random horizontal position
-    this.y = -r; // start at the bottom of dot, for smoothly dropping
+    this.y = -r; // start at the bottom of dot, for smoothly falling
     this.radius = r;
     this.color = DOT_COLORS[i % DOT_COLORS.length];
   }
