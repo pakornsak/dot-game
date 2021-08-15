@@ -13,9 +13,18 @@ The goal of this exercise is to create a game. In the game, dots move from the t
 - New dots appear at a random horizontal position at the top of the box. A dot should not "hang" off the left or right edge of the screen. Dots should vary randomly in size from 10px in diameter to 100px in diameter.
 - A new dot should also appear every 1000ms.
 
-## Score Evaluation
+# My assumption
+
+- dots that comes first is on the front, dot comes later is in the back (no matter, dot size is)
+- dot size as follows, `10`,`20`,`30`,`40`,`50`,`60`,`70`,`80`,`90`,`100` px, to be easy for calcualting score
+- allowed dots to be overlaped
+- when user clicks on dot overlaps, the topmost dot will be picked
+- if browser window is resized, the game will be restarted
+
+## Score (Assumption)
 
 When a player touches or clicks a dot, the dot should disappear from the box and a new dot should appear at the top of the page 1000ms later. The score should be incremented by a value inversely proportional to the size of the dot, with 10px dots worth 10 points, and 100px dots worth 1 point.
+Formula: `Math.floor(100 / dot.diameter)`
 
 | Diameter    | Points |
 | ----------- | ------ |
