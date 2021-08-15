@@ -4,7 +4,8 @@
   "description": "Dot game",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest --watchAll"
   },
   "author": "Pakornsak Supamongkonchaikul",
   "license": "MIT",
@@ -15,5 +16,10 @@
     "node",
     "express",
     "dot-game"
-  ]
+  ],
+  "devDependencies": {
+    "@testing-library/dom": "8.1.0",
+    "@testing-library/jest-dom": "5.14.1",
+    "jest": "27.0.6"
+  }
 }
