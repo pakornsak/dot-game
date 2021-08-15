@@ -11,7 +11,7 @@ const rand = (min, max) => {
 
 /**
  * Dot class, designed to keep all rendering props
- * - random diameter from 10px-100px
+ * - random diameter from 10px to 100px
  * - one color for each diameter
  */
 class Dot {
