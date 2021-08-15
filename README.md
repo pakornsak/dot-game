@@ -11,7 +11,21 @@ The goal of this exercise is to create a game. In the game, dots move from the t
 - Dots fall smoothly at a constant rate. A player should be able to use a slider to control the speed at which dots fall. When the slider is changed, all dots including currently falling dots and newly created dots should change speed.
 - At the slider's left-most position, dots should fall at a speed of 10px per second, and at the slider's right-most position, should fall at a speed of 100px per second.
 - New dots appear at a random horizontal position at the top of the box. A dot should not "hang" off the left or right edge of the screen. Dots should vary randomly in size from 10px in diameter to 100px in diameter.
-- When a player touches or clicks a dot, the dot should disappear from the box and a new dot should appear at the top of the page 1000ms later. The score should be incremented by a value inversely proportional to the size of the dot, with 10px dots worth 10 points, and 100px dots worth 1 point.
 - A new dot should also appear every 1000ms.
 
 ## Score Evaluation
+
+When a player touches or clicks a dot, the dot should disappear from the box and a new dot should appear at the top of the page 1000ms later. The score should be incremented by a value inversely proportional to the size of the dot, with 10px dots worth 10 points, and 100px dots worth 1 point.
+
+| Diameter    | Points |
+| ----------- | ------ |
+| 10 px       | 10     |
+| 11 - 20 px  | 9      |
+| 21 - 30 px  | 8      |
+| 31 - 40 px  | 7      |
+| 41 - 50 px  | 6      |
+| 51 - 60 px  | 5      |
+| 61 - 70 px  | 4      |
+| 71 - 80 px  | 3      |
+| 81 - 90 px  | 2      |
+| 91 - 100 px | 1      |
