@@ -54,6 +54,7 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.board = new Board(ctx);
+    /** @type {{score: number, speed: number}}} */
     this.controls = new Proxy({}, { set: updateControls });
   }
 
@@ -62,8 +63,9 @@ class Game {
    */
   init = () => {
     // render controls
-    this.controls.score = 0;
+    this.controls.score = Number(sessionStorage.getItem("score")) || 0;
     this.controls.speed = SPEED_MIN;
+    sessionStorage.clear();
 
     // setup first dot and drop rate
     this.board.addDot();
@@ -87,6 +89,10 @@ class Game {
   start = () => {
     this.init();
     this.animate();
+  };
+
+  save = () => {
+    sessionStorage.setItem("score", this.controls.score.toString());
   };
 
   /**
@@ -126,4 +132,7 @@ game.start();
 /**
  * restart game if window resize is detected
  */
-window.onresize = () => window.location.reload();
+window.onresize = () => {
+  game.save();
+  window.location.reload();
+};
