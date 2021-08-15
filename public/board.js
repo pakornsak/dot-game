@@ -39,7 +39,7 @@ class Board {
   };
 
   /**
-   * Draw a dot
+   * Draw a given dot
    * @param {Dot} dot
    */
   drawDot = (dot) => {
@@ -73,9 +73,12 @@ class Board {
   };
 
   /**
-   * @param {number} x
-   * @param {number} y
-   * @return {[number, Dot | null]}
+   * check if the click point is inside any dot
+   * - if true, return found dot and its index
+   * - otherwise, return null and index as -1
+   * @param {number} x click-point x
+   * @param {number} y click-point y
+   * @return {[number, Dot | null]} both foundIndex and dot
    */
   checkCollision = (x, y) => {
     const foundIndex = this.dots.findIndex((dot) => {
