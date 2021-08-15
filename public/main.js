@@ -13,8 +13,8 @@ const _ctx = _canvas.getContext("2d");
 _ctx.scale(dpr, dpr);
 
 let accountValues = {
-  speed: DEFAULT_SPEED,
   score: 0,
+  speed: SPEED_MIN,
 };
 
 const updateAccount = (target, key, value) => {
@@ -31,12 +31,15 @@ class Game {
     this.ctx = ctx;
     this.board = new Board(ctx);
 
-    this.requestId = -1;
     this.account = new Proxy(accountValues, { set: updateAccount });
     this.init();
   }
 
   init = () => {
+    // force render
+    this.account.speed = this.account.speed;
+    this.account.score = this.account.score;
+
     this.board.addBall();
     this.timerId = setInterval(() => {
       this.board.addBall();
@@ -48,7 +51,7 @@ class Game {
    */
   animate = (time = 0) => {
     this.board.draw(time, this.account.speed);
-    this.requestId = requestAnimationFrame(this.animate);
+    requestAnimationFrame(this.animate);
   };
 
   play = () => {
@@ -86,5 +89,7 @@ class Game {
 const game = new Game(_ctx);
 game.play();
 
+_silder.setAttribute("min", SPEED_MIN.toString());
+_silder.setAttribute("max", SPEED_MAX.toString());
 _silder.oninput = (e) => game.updateSpeed(e.target.value);
 _canvas.onclick = (e) => game.handleClick(e);
