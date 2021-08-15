@@ -83,7 +83,7 @@ class Game {
   /**
    * Setup game settings and start game
    */
-  play = () => {
+  start = () => {
     this.init();
     this.animate();
   };
@@ -119,7 +119,7 @@ class Game {
 const game = new Game($ctx);
 $silder.oninput = game.updateSpeed;
 $canvas.onclick = game.handleClick;
-game.play();
+game.start();
 
 /**
  * restart game if window resize is detected
