@@ -10,7 +10,8 @@ const rand = (min, max) => {
 };
 
 /**
- * Dot class, designed to keep all rendering props
+ * Dot component, designed to:
+ * - keep all rendering props
  * - random diameter from 10px to 100px
  * - one color for each diameter
  */

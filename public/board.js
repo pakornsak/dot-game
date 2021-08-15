@@ -1,12 +1,14 @@
 //@ts-check
 /**
- * Board class, designed as follows:
- * - keep track for all dots
- * - manipulate dots
- * - provide utility functions for dots
+ * Board component, designed to:
+ * - keep track all dots
+ * - render dots
  */
 class Board {
-  /** @type {Dot[]}*/
+  /**
+   * An array to keep all dots in board
+   * @type {Dot[]}
+   * */
   dots;
 
   /**
@@ -76,10 +78,10 @@ class Board {
    * @return {[number, Dot | null]}
    */
   checkCollision = (x, y) => {
-    const found = this.dots.findIndex((dot) => {
+    const foundIndex = this.dots.findIndex((dot) => {
       const distance = Math.sqrt(Math.pow(x - dot.x, 2) + Math.pow(y - dot.y, 2));
       return distance < dot.radius;
     });
-    return [found, this.dots[found]];
+    return [foundIndex, this.dots[foundIndex]];
   };
 }
