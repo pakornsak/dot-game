@@ -2,7 +2,7 @@
 
 The goal of this exercise is to create a game. In the game, dots move from the top to the bottom of the screen. A player tries to click on the dots, and receives points when they are successful.
 
-![mockup](https://cdn.glitch.com/e874e279-3a76-4f32-aae0-288b2def7d0d%2Fdot-game-scoreboard-2.jpg)
+![dot-game](https://cdn.glitch.com/e874e279-3a76-4f32-aae0-288b2def7d0d%2Fdot-game-scoreboard_315x556.jpg?v=1629037628872)
 
 ## Building the Game
 
@@ -15,11 +15,11 @@ The goal of this exercise is to create a game. In the game, dots move from the t
 
 # My assumption
 
-- dots that comes first is on the front, dot comes later is in the back (no matter, dot size is)
-- dot size as follows, `10`,`20`,`30`,`40`,`50`,`60`,`70`,`80`,`90`,`100` px, to be easy for calcualting score
 - allowed dots to be overlaped
+- when overlaping, dot which comes first is on the front, and dot comes later is in the back (no matter, dot size is)
 - when user clicks on dot overlaps, the topmost dot will be picked
-- if browser window is resized, the game will be restarted
+- dot size as follows, `10`,`20`,`30`,`40`,`50`,`60`,`70`,`80`,`90`,`100` px, to be easy for calcualting score
+- if browser window is resized, the game will be automatically restarted
 
 ## Score (Assumption)
 
