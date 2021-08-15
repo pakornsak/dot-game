@@ -2,7 +2,7 @@
 
 The goal of this exercise is to create a game. In the game, dots move from the top to the bottom of the screen. A player tries to click on the dots, and receives points when they are successful.
 
-![mockup](https://cdn.glitch.com/5637e272-75b8-4d60-af04-8b0adc1b8093%2Fdot-game-scoreboard.png)
+![mockup](https://cdn.glitch.com/e874e279-3a76-4f32-aae0-288b2def7d0d%2Fdot-game-scoreboard-2.jpg)
 
 ## Building the Game
 
@@ -24,7 +24,6 @@ The goal of this exercise is to create a game. In the game, dots move from the t
 ## Score (Assumption)
 
 When a player touches or clicks a dot, the dot should disappear from the box and a new dot should appear at the top of the page 1000ms later. The score should be incremented by a value inversely proportional to the size of the dot, with 10px dots worth 10 points, and 100px dots worth 1 point.
-Formula: `Math.floor(100 / dot.diameter)`
 
 | Diameter    | Points |
 | ----------- | ------ |
