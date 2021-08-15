@@ -12,12 +12,7 @@ _canvas.height = (document.body.clientHeight - offsetTop) * dpr;
 const _ctx = _canvas.getContext("2d");
 _ctx.scale(dpr, dpr);
 
-let accountValues = {
-  score: 0,
-  speed: SPEED_MIN,
-};
-
-const updateAccount = (target, key, value) => {
+const updateDisplay = (target, key, value) => {
   target[key] = value;
   let element = document.getElementById(key);
   if (element) {
@@ -31,14 +26,14 @@ class Game {
     this.ctx = ctx;
     this.board = new Board(ctx);
 
-    this.account = new Proxy(accountValues, { set: updateAccount });
+    this.account = new Proxy({}, { set: updateDisplay });
     this.init();
   }
 
   init = () => {
-    // force render
-    this.account.speed = this.account.speed;
-    this.account.score = this.account.score;
+    // render display section
+    this.account.score = 0;
+    this.account.speed = SPEED_MIN;
 
     this.board.addBall();
     this.timerId = setInterval(() => {

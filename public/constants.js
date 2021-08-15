@@ -14,5 +14,5 @@ const BALL_COLORS = [
   "#6eb5ff",
   "#85e3ff",
   "#fff5ba",
-  "#ff9cee", //
+  "#ff9cee", // last color
 ];
