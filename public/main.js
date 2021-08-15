@@ -1,6 +1,6 @@
 //@ts-check
 const $controls = document.getElementById("controls");
-const offsetTop = $controls.offsetHeight;
+const $offsetTop = $controls.offsetHeight;
 const dpr = window.devicePixelRatio || 1;
 
 /**
@@ -12,7 +12,8 @@ const dpr = window.devicePixelRatio || 1;
 // @ts-ignore
 const $canvas = document.getElementById("board");
 $canvas.width = document.body.clientWidth * dpr;
-$canvas.height = (document.body.clientHeight - offsetTop) * dpr;
+$canvas.height = (document.body.clientHeight - $offsetTop) * dpr;
+$canvas.setAttribute("offset", $offsetTop.toString());
 const $ctx = $canvas.getContext("2d");
 $ctx.scale(dpr, dpr);
 
@@ -103,6 +104,7 @@ class Game {
    * @param {MouseEvent} e
    */
   handleClick = (e) => {
+    const offsetTop = Number(this.ctx.canvas.getAttribute("offset"));
     const [found, dot] = this.board.checkCollision(e.x, e.y - offsetTop);
     if (dot) {
       this.board.removeDot(found);
