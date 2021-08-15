@@ -13,10 +13,12 @@ class Ball {
    * @param {number} width
    */
   constructor(width) {
-    const r = rand(1, 10) * 10;
+    const i = rand(1, 10);
+    const r = i * 10;
 
     this.x = rand(r, width - r);
     this.y = -r; // make it start smoothly
     this.radius = r;
+    this.color = BALL_COLORS[i % BALL_COLORS.length];
   }
 }

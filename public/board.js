@@ -31,7 +31,7 @@ class Board {
   drawBall = (ball) => {
     this.ctx.beginPath();
     this.ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-    this.ctx.fillStyle = theme.colors.ball;
+    this.ctx.fillStyle = ball.color;
     this.ctx.fill();
     this.ctx.closePath();
   };
@@ -49,7 +49,7 @@ class Board {
     const dt = time - this.lastRenderTime;
     const px = (speed / 1000) * dt;
 
-    for (let i = 0; i < this.balls.length; i++) {
+    for (let i = this.balls.length - 1; i >= 0; i--) {
       this.balls[i].y += px;
       this.drawBall(this.balls[i]);
     }
