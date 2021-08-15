@@ -9,11 +9,12 @@ class Board {
     this.balls = [];
 
     const dpr = window.devicePixelRatio || 1;
+    this.canvasWidth = this.ctx.canvas.width / dpr;
     this.canvasHeight = this.ctx.canvas.height / dpr;
   }
 
   addBall = () => {
-    this.balls.push(new Ball(this.canvasHeight));
+    this.balls.push(new Ball(this.canvasWidth));
   };
 
   /**
