@@ -3,7 +3,7 @@ const DEFAULT_SPEED = 10;
 const SPEED_MIN = 10;
 const SPEED_MAX = 100;
 
-const BALL_INTERVAL = 1000; //ms
+const BALL_DROP_RATE = 1000; //every 1000 ms
 const BALL_COLORS = [
   "#ffb5e8",
   "#d5aaff",

@@ -1,18 +1,24 @@
 //@ts-check
-const _silder = document.getElementById("slider");
-const controls = document.getElementById("controls");
-const offsetTop = controls.offsetHeight;
+const $controls = document.getElementById("controls");
+const offsetTop = $controls.offsetHeight;
 const dpr = window.devicePixelRatio || 1;
 
 /** @type {HTMLCanvasElement} */
 // @ts-ignore
-const _canvas = document.getElementById("board");
-_canvas.width = document.body.clientWidth * dpr;
-_canvas.height = (document.body.clientHeight - offsetTop) * dpr;
-const _ctx = _canvas.getContext("2d");
-_ctx.scale(dpr, dpr);
+const $canvas = document.getElementById("board");
+$canvas.width = document.body.clientWidth * dpr;
+$canvas.height = (document.body.clientHeight - offsetTop) * dpr;
+const $ctx = $canvas.getContext("2d");
+$ctx.scale(dpr, dpr);
 
-const updateDisplay = (target, key, value) => {
+// setup slider element
+// - read min,max from config
+const $silder = document.getElementById("slider");
+$silder.setAttribute("min", SPEED_MIN.toString());
+$silder.setAttribute("max", SPEED_MAX.toString());
+
+// util to sync controls state
+const updateControls = (target, key, value) => {
   target[key] = value;
   let element = document.getElementById(key);
   if (element) {
@@ -25,28 +31,27 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.board = new Board(ctx);
-
-    this.account = new Proxy({}, { set: updateDisplay });
+    this.controls = new Proxy({}, { set: updateControls });
     this.init();
   }
 
   init = () => {
     // render display section
-    this.account.score = 0;
-    this.account.speed = SPEED_MIN;
+    this.controls.score = 0;
+    this.controls.speed = SPEED_MIN;
 
     this.board.addBall();
     this.timerId = setInterval(() => {
       this.board.addBall();
-    }, BALL_INTERVAL);
+    }, BALL_DROP_RATE);
   };
 
   /**
    * @param {number} time
    */
   animate = (time = 0) => {
-    this.board.draw(time, this.account.speed);
-    requestAnimationFrame(this.animate);
+    this.board.draw(time, this.controls.speed);
+    this.requestId = requestAnimationFrame(this.animate);
   };
 
   play = () => {
@@ -54,17 +59,11 @@ class Game {
   };
 
   /**
-   * @param {string} speed
+   * @param {any} e
    */
-  updateSpeed = (speed) => {
-    this.account.speed = Number(speed);
-  };
-
-  /**
-   * @param {number} score
-   */
-  updateScore = (score) => {
-    this.account.score = score;
+  updateSpeed = (e) => {
+    const speed = e.target.value;
+    this.controls.speed = Number(speed);
   };
 
   /**
@@ -76,15 +75,16 @@ class Game {
       this.board.removeBall(found);
 
       const score = Math.floor(ball.radius / 10);
-      this.account.score += score;
+      this.controls.score += score;
     }
   };
 }
 
-const game = new Game(_ctx);
+// create game instance and addEventListener
+const game = new Game($ctx);
+$silder.oninput = game.updateSpeed;
+$canvas.onclick = game.handleClick;
 game.play();
 
-_silder.setAttribute("min", SPEED_MIN.toString());
-_silder.setAttribute("max", SPEED_MAX.toString());
-_silder.oninput = (e) => game.updateSpeed(e.target.value);
-_canvas.onclick = (e) => game.handleClick(e);
+// reload screen if window is resized
+window.onresize = () => window.location.reload();
