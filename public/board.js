@@ -45,8 +45,11 @@ class Board {
   drawDot = (dot) => {
     this.ctx.beginPath();
     this.ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-    this.ctx.fillStyle = dot.color;
+    this.ctx.fillStyle = DOT_COLORS[dot.color];
     this.ctx.fill();
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = DOT_BORDER_COLORS[dot.border];
+    this.ctx.stroke();
     this.ctx.closePath();
   };
 

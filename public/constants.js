@@ -21,3 +21,17 @@ const DOT_COLORS = [
   "#fff5ba",
   "#ff9cee", // pastel colors
 ];
+Object.freeze(DOT_COLORS);
+const DOT_BORDER_COLORS = [
+  "#ffc6f9",
+  "#e6bbff",
+  "#ede4ff",
+  "#bff9ec",
+  "#cffdd7",
+  "#ffdaef",
+  "#7fc6ff",
+  "#96f4ff",
+  "#fff6cb",
+  "#ffadff", // pastel colors
+];
+Object.freeze(DOT_BORDER_COLORS);

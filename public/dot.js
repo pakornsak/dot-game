@@ -26,6 +26,7 @@ class Dot {
     this.x = rand(r, width - r); // random horizontal position
     this.y = -r; // start at the bottom of dot, for smoothly falling
     this.radius = r;
-    this.color = DOT_COLORS[i % DOT_COLORS.length];
+    this.color = i % DOT_COLORS.length;
+    this.border = i % DOT_BORDER_COLORS.length;
   }
 }
