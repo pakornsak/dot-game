@@ -15,25 +15,26 @@ The goal of this exercise is to create a game. In the game, dots move from the t
 
 # My assumption
 
-- allow dots to be overlaped each other
-- when overlapping, a dot which is created first is in the front, and a dot which is created later is in the back
-- when user clicks on overlapping dots, the front-most dot is picked
-- dot size as follows, `10`,`20`,`30`,`40`,`50`,`60`,`70`,`80`,`90`,`100` px, to be easy for calcualting score
-- if browser window is resized, the game will be automatically restarted
+- allow dots to be overlapped each other
+- when overlapping, dot created before will be in the front
+- when user clicks on overlapping dots, the front-most dot will be scored
+- dots will be created in following diameters only `10`,`20`,`30`,`40`,`50`,`60`,`70`,`80`,`90`,`100` px, to be easy for calculating scores
+- when window is resized, all dots will be cleared but speed and score will be remained
+- `When a player touches or clicks a dot, the dot should disappear from the box and a new dot should appear at the top of the page 1000ms later.` Since the requirement is uncleared for me, so I implied that no extra dots needed. A new dot appears every 1000ms.
 
 ## Score (Assumption)
 
 When a player touches or clicks a dot, the dot should disappear from the box and a new dot should appear at the top of the page 1000ms later. The score should be incremented by a value inversely proportional to the size of the dot, with 10px dots worth 10 points, and 100px dots worth 1 point.
 
-| Diameter    | Points |
-| ----------- | ------ |
-| 10 px       | 10     |
-| 11 - 20 px  | 9      |
-| 21 - 30 px  | 8      |
-| 31 - 40 px  | 7      |
-| 41 - 50 px  | 6      |
-| 51 - 60 px  | 5      |
-| 61 - 70 px  | 4      |
-| 71 - 80 px  | 3      |
-| 81 - 90 px  | 2      |
-| 91 - 100 px | 1      |
+| Dot Diameter | Points |
+| ------------ | ------ |
+| 10 px        | 10     |
+| 20 px        | 9      |
+| 30 px        | 8      |
+| 40 px        | 7      |
+| 50 px        | 6      |
+| 60 px        | 5      |
+| 70 px        | 4      |
+| 80 px        | 3      |
+| 90 px        | 2      |
+| 100 px       | 1      |
