@@ -38,6 +38,10 @@ const updateControls = (target, key, value) => {
   if (element) {
     element.textContent = value;
   }
+  if (key === "speed") {
+    // @ts-ignore
+    document.getElementById("slider").value = value;
+  }
   return true;
 };
 
@@ -64,7 +68,7 @@ class Game {
   init = () => {
     // render controls
     this.controls.score = Number(sessionStorage.getItem("score")) || 0;
-    this.controls.speed = SPEED_MIN;
+    this.controls.speed = Number(sessionStorage.getItem("speed")) || SPEED_MIN;
     sessionStorage.clear();
 
     // setup first dot and drop rate
@@ -93,6 +97,7 @@ class Game {
 
   save = () => {
     sessionStorage.setItem("score", this.controls.score.toString());
+    sessionStorage.setItem("speed", this.controls.speed.toString());
   };
 
   /**
